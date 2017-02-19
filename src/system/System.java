@@ -10,7 +10,7 @@ public class System
 {
 	public static void main(String[] args) throws LWJGLException
 	{
-		Display.setDisplayMode(new DisplayMode(800,600));
+		Display.setDisplayMode(new DisplayMode(1280,720));
 		Display.setFullscreen(false);
 		Display.setVSyncEnabled(true);
 		Display.create();
@@ -23,6 +23,7 @@ public class System
 			render();
 			Display.update();
 		}
+		destroy();
 		Display.destroy();
 	}
 	
@@ -41,13 +42,17 @@ public class System
 	}
 	
 	public static void render() {
-		glTranslatef(0.1f,0,0);
+		//glTranslatef(0.1f,0,0);
 		glBegin(GL_TRIANGLES);
 		glColor3f(1,1,1);
 		glVertex3f(0,0,0);
 		glVertex3f(400,0,0);
 		glVertex3f(0,300,0);
 		glEnd();
+	}
+	
+	public static void destroy() {
+		
 	}
 	
 }
