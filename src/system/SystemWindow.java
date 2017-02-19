@@ -8,12 +8,12 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class SystemWindow 
 {
-	private static int texture;
+	//private static int texture;
 	private static Controller c;
 	
 	public static void main(String[] args) throws LWJGLException
 	{
-		Display.setDisplayMode(new DisplayMode(1280,720));
+		Display.setDisplayMode(new DisplayMode(800,800));
 		Display.setFullscreen(false);
 		Display.setVSyncEnabled(true);
 		Display.create();
@@ -24,7 +24,7 @@ public class SystemWindow
 		while(!Display.isCloseRequested())
 		{
 			update();
-			render();
+			c.render();
 			Display.update();
 		}
 		destroy();
@@ -36,9 +36,9 @@ public class SystemWindow
 		glEnable(GL_CULL_FACE);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		GLU.gluOrtho2D(0, 1280, 0, 720);
+		GLU.gluOrtho2D(0, 800, 0, 800);
 		
-		texture = TexturesLoader.loadTexture("data/test.png");
+		//texture = TexturesLoader.loadTexture("data/test.png");
 	}
 	
 	public static void update() {
@@ -48,31 +48,8 @@ public class SystemWindow
 		glLoadIdentity();
 	}
 	
-	public static void render() {
-		glTranslatef(10f,0.2f,0);
-		glScalef(0.5f,0.5f,1);
-		glRotatef(45,0,0,1);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glBegin(GL_TRIANGLES);
-			glColor3f(1,1,1);
-			glTexCoord2f(0,0); glVertex3f(00,0,0);
-			glTexCoord2f(1,0); glVertex3f(400,0,0);
-			glTexCoord2f(0,1); glVertex3f(0,300,0);
-		glEnd();
-		
-
-		glBegin(GL_TRIANGLES);
-			glColor3f(1,1,1);
-			glTexCoord2f(1,1); glVertex3f(400,300,0);
-			glTexCoord2f(0,1); glVertex3f(0,300,0);
-			glTexCoord2f(1,0); glVertex3f(400,0,0);
-		glEnd();
-
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
-	
 	public static void destroy() {
-		glDeleteTextures(texture);
+		//glDeleteTextures(texture);
 	}
 	
 }
